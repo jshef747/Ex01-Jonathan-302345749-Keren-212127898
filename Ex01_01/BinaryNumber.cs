@@ -6,8 +6,11 @@ namespace Ex01_01
     {
         private const int k_LenOfBinaryNumber = 7;
 
-        private int m_BinaryNum;
         private int m_BinaryNumInDecimal = 0;
+        private int m_LengthOfLongestSeriesOfOnes = 0;
+        private int m_NumberOfOnes = 0;
+        private int m_NumberOfChnagesBetween0And1 = 0;
+        private string m_StrBinaryNumber;
 
         private bool checkStrBinaryNumInput(string i_StrBinaryNumInput)
         {
@@ -28,20 +31,20 @@ namespace Ex01_01
             return returnValue;
         }
 
+
         public BinaryNumber()
         {
-            string strBinaryNumber = Console.ReadLine();
-            while(!checkStrBinaryNumInput(strBinaryNumber))
+            m_StrBinaryNumber = Console.ReadLine();
+            while(!checkStrBinaryNumInput(m_StrBinaryNumber))
             {
-                strBinaryNumber = Console.ReadLine();
+                m_StrBinaryNumber = Console.ReadLine();
             }
-
-            m_BinaryNum = int.Parse(strBinaryNumber);
 
             for(int i = 0; i < k_LenOfBinaryNumber; i++)
             {
-                if(strBinaryNumber[i] != 0)
+                if(m_StrBinaryNumber[i] != 0)
                 {
+                    m_NumberOfOnes++;
                     m_BinaryNumInDecimal += (int)Math.Pow(2, i);
                 }
             }
@@ -50,6 +53,11 @@ namespace Ex01_01
         public int GetBinaryNumInDecimal()
         {
             return m_BinaryNumInDecimal;
+        }
+
+        public string GetBinaryNum()
+        {
+            return m_StrBinaryNumber;
         }
     }
 }
