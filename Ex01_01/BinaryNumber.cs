@@ -59,5 +59,10 @@ namespace Ex01_01
         {
             return m_StrBinaryNumber;
         }
+
+        public int GetNumberOfOnes()
+        {
+            return m_NumberOfOnes;
+        }
     }
 }
