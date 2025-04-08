@@ -39,5 +39,11 @@
     <Compile Include="DynamicNumberTree.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ex01_02\Ex01_02.csproj">
+      <Project>{fc7f35b5-3646-4d43-8ce5-6b9bf31fc569}</Project>
+      <Name>Ex01_02</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

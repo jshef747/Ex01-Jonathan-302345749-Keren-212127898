@@ -8,6 +8,8 @@ namespace EX01_03
         const int MAXIMUM_HEIGHT = 15;
         public static int GetHeightFromUser()
         {
+            Console.WriteLine("Enter a number between {MINIMUM_HEIGHT} and {MAXIMUM_HEIGHT}:");
+
             int userInputInt;
             while (!int.TryParse(Console.ReadLine(), out userInputInt) || userInputInt < MINIMUM_HEIGHT || userInputInt > MAXIMUM_HEIGHT)
             {

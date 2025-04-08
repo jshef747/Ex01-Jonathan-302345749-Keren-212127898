@@ -4,7 +4,7 @@
     {
         static void Main()
         {
-            const int TREE_HEIGHT = 7;
+            const int TREE_HEIGHT = 9;
             NumbersTree.PrintNumberTree(TREE_HEIGHT);
         }
     }
