@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+
 
 namespace Ex01_01
 {
@@ -14,7 +14,7 @@ namespace Ex01_01
             for(int i = 0; i < k_LengthOfSet; i++)
             {
                 m_BinaryNumberArray[i] = new BinaryNumber();
-                m_BinaryNumberArray[i].GetBinaryNum();
+                m_BinaryNumberArray[i].GetBinaryNumberFromUser();
                 m_NumOfOnes += m_BinaryNumberArray[i].GetNumberOfOnes();
             }
         }
@@ -60,6 +60,22 @@ namespace Ex01_01
                 }
             }
             return m_BinaryNumberArray[maxIndex];
+        }
+
+        public void PrintDecimalNumbersInDecendingOrder()
+        {
+            int[] decimalNumbers = new int[k_LengthOfSet];
+            for(int i = 0; i < k_LengthOfSet; i++)
+            {
+                decimalNumbers[i] = m_BinaryNumberArray[i].GetBinaryNumInDecimal();
+            }
+            Array.Sort(decimalNumbers);
+            Array.Reverse(decimalNumbers);
+            Console.WriteLine("The decimal numbers in descending order are:");
+            for(int i = 0; i < k_LengthOfSet; i++)
+            {
+                Console.WriteLine(decimalNumbers[i]);
+            }
         }
     }
 }
