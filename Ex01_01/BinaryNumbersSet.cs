@@ -19,7 +19,7 @@ namespace Ex01_01
             }
         }
         
-        private int binarySetAverage()
+        private float binarySetAverage()
         {
             int sum = 0;
             for(int i = 0; i < k_LengthOfSet; i++)
@@ -27,7 +27,7 @@ namespace Ex01_01
                 sum += m_BinaryNumberArray[i].GetBinaryNumInDecimal();
             }
 
-            return sum / k_LengthOfSet;
+            return (float)sum / k_LengthOfSet;
         }
 
         private BinaryNumber GetLongestSeriesOfOnes()
