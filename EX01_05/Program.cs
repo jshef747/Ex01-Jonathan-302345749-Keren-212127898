@@ -7,7 +7,7 @@ namespace EX01_05
         public static void Main()
         {
             Number n1 = new Number();
-            n1.printNumberDetails();
+            n1.PrintNumberDetails();
         }
     }
 }

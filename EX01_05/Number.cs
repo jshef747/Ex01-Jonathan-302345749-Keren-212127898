@@ -62,7 +62,7 @@ namespace EX01_05
             return smallestDigit;
         }
 
-        private int NumberOfDigitsSmallerThenTheFirstDigit()
+        private int numberOfDigitsSmallerThenTheFirstDigit()
         {
             int smallerThenFirstDigit = 0;
             int firstDigit = m_Number / (int) Math.Pow(10, k_NumberLength - 1);
@@ -80,7 +80,7 @@ namespace EX01_05
             return smallerThenFirstDigit;
         }
 
-        private int NumberOfDigitsDividedBy3WithoutRemainder()
+        private int numberOfDigitsDividedBy3WithoutRemainder()
         {
             int dividedBy3 = 0;
             int dividedNumber = m_Number;
@@ -97,12 +97,12 @@ namespace EX01_05
             return dividedBy3;
         }
 
-        private int DifferenceBetweenLargestAndSmallestDigit()
+        private int differenceBetweenLargestAndSmallestDigit()
         {
             return getLargestDigit() - getSmallestDigit();
         }
 
-        private int GetTheDigitThatAppearsTheMostAndItsNumberOfAppearances(out int numberOfAppearences)
+        private int getTheDigitThatAppearsTheMostAndItsNumberOfAppearances(out int i_NumberOfAppearences)
         {
             int[] digitCount = new int[10];
             int dividedNumber = m_Number;
@@ -114,27 +114,27 @@ namespace EX01_05
                 digitCount[currentDigit]++;
             }
             int digitWithMostNumberOfAppearances = 0;
-            numberOfAppearences = digitCount[digitWithMostNumberOfAppearances];
+            i_NumberOfAppearences = digitCount[digitWithMostNumberOfAppearances];
             for(int i = 1; i < 10; i++)
             {
                 int currentAppearances = digitCount[i];
                 if(currentAppearances > digitCount[digitWithMostNumberOfAppearances])
                 {
                     digitWithMostNumberOfAppearances = i;
-                    numberOfAppearences = digitCount[digitWithMostNumberOfAppearances];
+                    i_NumberOfAppearences = digitCount[digitWithMostNumberOfAppearances];
                 }
             }
             return digitWithMostNumberOfAppearances;
         }
 
-        public void printNumberDetails()
+        public void PrintNumberDetails()
         {
             int digitWithMostNumberOfAppearances;
             Console.WriteLine(string.Format(@"Number Details:
 the left digit: {0} number of digits smaller than it: {1}
 number of digits divided by 3 without remainder: {2}
 difference between largest and smallest digit: {3}
-the digit with the most appearances: {4} with {5} appearances", m_Number / (int) Math.Pow(10, k_NumberLength - 1), NumberOfDigitsSmallerThenTheFirstDigit(),NumberOfDigitsDividedBy3WithoutRemainder(),DifferenceBetweenLargestAndSmallestDigit(),GetTheDigitThatAppearsTheMostAndItsNumberOfAppearances(out digitWithMostNumberOfAppearances), digitWithMostNumberOfAppearances));
+the digit with the most appearances: {4} with {5} appearances", m_Number / (int) Math.Pow(10, k_NumberLength - 1), numberOfDigitsSmallerThenTheFirstDigit(),numberOfDigitsDividedBy3WithoutRemainder(),differenceBetweenLargestAndSmallestDigit(),getTheDigitThatAppearsTheMostAndItsNumberOfAppearances(out digitWithMostNumberOfAppearances), digitWithMostNumberOfAppearances));
         }
     }
 }
