@@ -4,12 +4,19 @@ namespace Ex01_01
 {
     class Program
     {
-        static void Main()
+        public static void Main()
         {
-            Console.WriteLine("Enter 4 binary numbers of length 7:");
-            BinaryNumbersSet binaryNumbersSet = new BinaryNumbersSet();
-            Console.WriteLine("The average of the binary numbers in decimal is: " + binaryNumbersSet.BinarySetAverage());  
-            binaryNumbersSet.PrintDecimalNumbersInDecendingOrder();
+             BinaryNumbersSet[] arrayOfBinaryNumbersSet = new BinaryNumbersSet[4];
+             for(int i = 0; i < 4; i++)
+             {
+                 Console.WriteLine("Enter 4 binary numbers of length 7:");
+                 arrayOfBinaryNumbersSet[i] = new BinaryNumbersSet();
+             }
+
+             for(int i = 0; i < 4; i++)
+             {
+                 arrayOfBinaryNumbersSet[i].PrintBinarySetDetails();
+             }
         }
     }
 }

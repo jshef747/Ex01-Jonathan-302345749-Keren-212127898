@@ -19,7 +19,7 @@ namespace Ex01_01
             }
         }
         
-        public int BinarySetAverage()
+        private int binarySetAverage()
         {
             int sum = 0;
             for(int i = 0; i < k_LengthOfSet; i++)
@@ -30,7 +30,7 @@ namespace Ex01_01
             return sum / k_LengthOfSet;
         }
 
-        public BinaryNumber GetLongestSeriesOfOnes()
+        private BinaryNumber GetLongestSeriesOfOnes()
         {
             int maxIndex = 0;
             int max = m_BinaryNumberArray[0].GetLengthOfLongestSeriesOfOnes();
@@ -47,7 +47,7 @@ namespace Ex01_01
             return m_BinaryNumberArray[maxIndex];
         }
 
-        public BinaryNumber GetLargestNumOfOnes()
+        private BinaryNumber GetLargestNumOfOnes()
         {
             int maxIndex = 0;
             int max = m_BinaryNumberArray[0].GetNumberOfOnes();
@@ -62,7 +62,7 @@ namespace Ex01_01
             return m_BinaryNumberArray[maxIndex];
         }
 
-        public void PrintDecimalNumbersInDecendingOrder()
+        private void printDecimalNumbersInDecendingOrder()
         {
             int[] decimalNumbers = new int[k_LengthOfSet];
             for(int i = 0; i < k_LengthOfSet; i++)
@@ -76,6 +76,39 @@ namespace Ex01_01
             {
                 Console.WriteLine(decimalNumbers[i]);
             }
+        }
+        
+        private void printNumberOfChangesForEachBinaryNum()
+        {
+            Console.WriteLine("The number of changes between 0 and 1 for each binary number is:");
+            for(int i = 0; i < k_LengthOfSet; i++)
+            {
+                Console.WriteLine("number of changes: {0} for binary number: {1}\n", m_BinaryNumberArray[i].GetNumberOfChangesBetween0And1(), m_BinaryNumberArray[i].GetBinaryNum());
+            }
+        }
+
+        public void PrintBinarySetDetails()
+        {
+            printDecimalNumbersInDecendingOrder();
+            BinaryNumber numWithLongestSeriesOfOnes = GetLongestSeriesOfOnes();
+            Console.WriteLine(
+                string.Format(
+                    @"the average in decimal is: {0}
+the longest series of ones is: {1} from the binary number: {2}",
+                    binarySetAverage(),
+                    numWithLongestSeriesOfOnes.GetLengthOfLongestSeriesOfOnes(),
+                    numWithLongestSeriesOfOnes.GetBinaryNum()));
+            
+            printNumberOfChangesForEachBinaryNum();
+
+            BinaryNumber numWithLargestNumOfOnes = GetLargestNumOfOnes();
+            Console.WriteLine(
+                string.Format(
+                    @"the largest number of ones is: {0} from the binary number: {1}",
+                    numWithLargestNumOfOnes.GetNumberOfOnes(),
+                    numWithLargestNumOfOnes.GetBinaryNum()));
+
+            Console.WriteLine("the total number of ones in the set is: {0}", m_NumOfOnes);
         }
     }
 }
