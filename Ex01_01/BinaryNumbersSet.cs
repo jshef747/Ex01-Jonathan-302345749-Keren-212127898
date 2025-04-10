@@ -74,8 +74,9 @@ namespace Ex01_01
             Console.WriteLine("The decimal numbers in descending order are:");
             for(int i = 0; i < k_LengthOfSet; i++)
             {
-                Console.WriteLine(decimalNumbers[i]);
+                Console.Write(string.Format(@"{0} ", decimalNumbers[i]));
             }
+            Console.WriteLine();
         }
         
         private void printNumberOfChangesForEachBinaryNum()
@@ -83,7 +84,7 @@ namespace Ex01_01
             Console.WriteLine("The number of changes between 0 and 1 for each binary number is:");
             for(int i = 0; i < k_LengthOfSet; i++)
             {
-                Console.WriteLine("number of changes: {0} for binary number: {1}\n", m_BinaryNumberArray[i].GetNumberOfChangesBetween0And1(), m_BinaryNumberArray[i].GetBinaryNum());
+                Console.WriteLine("number of changes: {0} for binary number: {1}", m_BinaryNumberArray[i].GetNumberOfChangesBetween0And1(), m_BinaryNumberArray[i].GetBinaryNum());
             }
         }
 
