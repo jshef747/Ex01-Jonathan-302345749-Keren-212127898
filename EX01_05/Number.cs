@@ -30,34 +30,32 @@ namespace EX01_05
 
         private int getLargestDigit()
         {
-            int largestDigit = m_Number / (int) Math.Pow(10, k_NumberLength - 1);
-            int dividedNumber = m_Number;
-            for(int i = 1; i < k_NumberLength; i++)
+            int largestDigit = 0;
+            int tempNumber = Math.Abs(m_Number);
+            for(int digitToCheck = 0; digitToCheck < k_NumberLength; digitToCheck++)
             {
-                int divideBy = (int) Math.Pow(10, k_NumberLength - i);
-                int currentDigit = dividedNumber / divideBy;
-                dividedNumber = dividedNumber % divideBy;
+                int currentDigit = tempNumber % 10;
                 if(currentDigit > largestDigit)
                 {
                     largestDigit = currentDigit;
                 }
+                tempNumber /= 10;
             }
             return largestDigit;
         }
         
         private int getSmallestDigit()
         {
-            int smallestDigit = m_Number / (int) Math.Pow(10, k_NumberLength - 1);
-            int dividedNumber = m_Number;
-            for(int i = 1; i < k_NumberLength; i++)
+            int smallestDigit = 10;
+            int tempNumber = Math.Abs(m_Number);
+            for(int digitToCheck = 0; digitToCheck < k_NumberLength; digitToCheck++)
             {
-                int divideBy = (int) Math.Pow(10, k_NumberLength - i);
-                int currentDigit = dividedNumber / divideBy;
-                dividedNumber = dividedNumber % divideBy;
+                int currentDigit = tempNumber % 10;
                 if(currentDigit < smallestDigit)
                 {
                     smallestDigit = currentDigit;
                 }
+                tempNumber /= 10;
             }
             return smallestDigit;
         }
@@ -82,57 +80,60 @@ namespace EX01_05
 
         private int numberOfDigitsDividedBy3WithoutRemainder()
         {
-            int dividedBy3 = 0;
-            int dividedNumber = m_Number;
-            for(int i = 0; i < k_NumberLength; i++)
+            int dividedBy3WithoutRemainder = 0;
+            int tempNumber = Math.Abs(m_Number);
+            for(int digitToCheck = 0; digitToCheck < k_NumberLength; digitToCheck++)
             {
-                int divideBy = (int) Math.Pow(10, k_NumberLength - 1 - i);
-                int currentDigit = dividedNumber / divideBy;
-                dividedNumber = dividedNumber % divideBy;
-                if(currentDigit % 3 == 0)
+                
+                int currentDigit = tempNumber % 10;
+                if(currentDigit < dividedBy3WithoutRemainder)
                 {
-                    dividedBy3++;
+                    dividedBy3WithoutRemainder++;
                 }
+                tempNumber /= 10;
             }
-            return dividedBy3;
+            return dividedBy3WithoutRemainder;
         }
 
         private int differenceBetweenLargestAndSmallestDigit()
         {
             return getLargestDigit() - getSmallestDigit();
         }
-
+        
         private int getTheDigitThatAppearsTheMostAndItsNumberOfAppearances(out int i_NumberOfAppearences)
         {
-            int maxNumberOfAppearences = 0;
-            int maxDigitThatAppears = m_Number % 10;
-            int currentNumberOfAppearences = 0;
-            int number = m_Number;
-            int numberChecker = m_Number;
-            for(int i = 0; i < k_NumberLength; i++)
+            int maxDigit = 0;
+            int maxAppearances = 0;
+            int tempNumber = m_Number;
+
+            for (int digitToCheck = 0; digitToCheck < k_NumberLength; digitToCheck++)
             {
-                int currentDigit = number % 10;
-                numberChecker = number;
-                for (int j = 0; j < k_NumberLength; j++)
+                int appearances = 0;
+                int numberCopy = tempNumber;
+
+                while (numberCopy > 0)
                 {
-                    if(numberChecker % 10 == currentDigit)
+                    int lastDigit = numberCopy % 10;
+                    if (lastDigit == digitToCheck)
                     {
-                        currentNumberOfAppearences++;
+                        appearances++;
                     }
-                    numberChecker /= 10;
+                    numberCopy /= 10;
                 }
 
-                if(currentNumberOfAppearences > maxNumberOfAppearences)
+                if(appearances <= maxAppearances)
                 {
-                    maxNumberOfAppearences = currentNumberOfAppearences;
-                    maxDigitThatAppears = currentDigit;
+                    continue;
                 }
-                number /= 10;
-                currentNumberOfAppearences = 0;
+
+                maxAppearances = appearances;
+                maxDigit = digitToCheck;
             }
-            i_NumberOfAppearences = maxNumberOfAppearences;
-            return maxDigitThatAppears;
+
+            i_NumberOfAppearences = maxAppearances;
+            return maxDigit;
         }
+
 
         public void PrintNumberDetails()
         {
