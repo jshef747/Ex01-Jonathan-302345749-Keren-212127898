@@ -6,15 +6,16 @@ namespace EX01_05
     {
         private const int k_NumberLength = 8;
         private int m_Number;
+        private string m_NumberStr;
 
         public Number()
         {
             Console.WriteLine("Please enter number with 8 digits:");
-            string numberStr = Console.ReadLine();
-            while(!checkIfInputIsValid(numberStr))
+            m_NumberStr = Console.ReadLine();
+            while(!checkIfInputIsValid(m_NumberStr))
             {
                 Console.WriteLine("Invalid input! Please enter number with 8 digits:");
-                numberStr = Console.ReadLine();
+                m_NumberStr = Console.ReadLine();
             }
         }
         
@@ -27,7 +28,7 @@ namespace EX01_05
             }
             return isValid;
         }
-
+        
         private int getLargestDigit()
         {
             int largestDigit = 0;
@@ -63,17 +64,16 @@ namespace EX01_05
         private int numberOfDigitsSmallerThenTheFirstDigit()
         {
             int smallerThenFirstDigit = 0;
-            int firstDigit = m_Number / (int) Math.Pow(10, k_NumberLength - 1);
-            int dividedNumber = m_Number;
-            for(int i = 1; i < k_NumberLength; i++)
+            int firstDigit = Math.Abs(m_Number / (int) Math.Pow(10, k_NumberLength - 1));
+            int tempNumber = Math.Abs(m_Number);
+            for(int digitToCheck = 1; digitToCheck < k_NumberLength; digitToCheck++)
             {
-                int divideBy = (int) Math.Pow(10, k_NumberLength - i);
-                int currentDigit = dividedNumber / divideBy;
-                dividedNumber = dividedNumber % divideBy;
+                int currentDigit = tempNumber % 10;
                 if(currentDigit < firstDigit)
                 {
                     smallerThenFirstDigit++;
                 }
+                tempNumber /= 10;
             }
             return smallerThenFirstDigit;
         }
@@ -86,7 +86,7 @@ namespace EX01_05
             {
                 
                 int currentDigit = tempNumber % 10;
-                if(currentDigit < dividedBy3WithoutRemainder)
+                if(currentDigit % 3 == 0)
                 {
                     dividedBy3WithoutRemainder++;
                 }
@@ -100,38 +100,30 @@ namespace EX01_05
             return getLargestDigit() - getSmallestDigit();
         }
         
-        private int getTheDigitThatAppearsTheMostAndItsNumberOfAppearances(out int i_NumberOfAppearences)
+        private int getTheDigitThatAppearsTheMostAndItsNumberOfAppearances(out int i_NumberOfAppearances)
         {
-            int maxDigit = 0;
+            char maxChar = m_NumberStr[0];
             int maxAppearances = 0;
-            int tempNumber = m_Number;
-
-            for (int digitToCheck = 0; digitToCheck < k_NumberLength; digitToCheck++)
+            for(int i = 0; i < k_NumberLength; i++)
             {
                 int appearances = 0;
-                int numberCopy = tempNumber;
-
-                while (numberCopy > 0)
+                char currentChar = m_NumberStr[i];
+                for(int j = 0; j < k_NumberLength; j++)
                 {
-                    int lastDigit = numberCopy % 10;
-                    if (lastDigit == digitToCheck)
+                    if(currentChar == m_NumberStr[j])
                     {
                         appearances++;
                     }
-                    numberCopy /= 10;
                 }
 
-                if(appearances <= maxAppearances)
+                if(appearances > maxAppearances)
                 {
-                    continue;
+                    maxAppearances = appearances;
+                    maxChar = currentChar;
                 }
-
-                maxAppearances = appearances;
-                maxDigit = digitToCheck;
             }
-
-            i_NumberOfAppearences = maxAppearances;
-            return maxDigit;
+            i_NumberOfAppearances = maxAppearances;
+            return maxChar - '0';
         }
 
 
