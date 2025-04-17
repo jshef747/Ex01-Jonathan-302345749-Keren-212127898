@@ -5,48 +5,48 @@ namespace Ex01_04
 {
     class SpecialString
     {
-        private static string m_specialString;
-        const int STRING_LENGTH = 12;
-        const int NUMBER_TO_CHECK_DIVISION = 3; 
+        private static string s_MSpecialString;
+        const int k_StringLength = 12;
+        const int k_NumberToCheckDivision = 3; 
         public static void GetStrFromUser()
         {
-            Console.WriteLine($"Enter a string with exactly {STRING_LENGTH} characters:");
+            Console.WriteLine($"Enter a string with exactly {k_StringLength} characters:");
             string strToCheck = Console.ReadLine();
-            while (strToCheck.Length != STRING_LENGTH) 
+            while (strToCheck.Length != k_StringLength) 
             {
                 Console.WriteLine("Input must be exactly 12 characters long. Try again:");
                 strToCheck = Console.ReadLine();
             }
-            m_specialString = strToCheck;
+            s_MSpecialString = strToCheck;
         }
 
         public static bool IsPalindrome()
         {
-            return IsPalindromeHelper(m_specialString.ToLower());
+            return isPalindromeHelper(s_MSpecialString.ToLower());
         }
 
-        private static bool IsPalindromeHelper(string strToCheck)
+        private static bool isPalindromeHelper(string i_StrToCheck)
         {
             bool returnValue = true;
-            if (strToCheck.Length != 0) // base case is when we get to zero lengthed string
+            if (i_StrToCheck.Length != 0) // base case is when we get to zero lengthed string
             {
-                int lastCharIndex = strToCheck.Length - 1;
-                if (strToCheck[0] == strToCheck[lastCharIndex])
+                int lastCharIndex = i_StrToCheck.Length - 1;
+                if (i_StrToCheck[0] == i_StrToCheck[lastCharIndex])
                 {
                     if (lastCharIndex == 1) // got to middle of string
                     {
-                        Console.WriteLine($"Stirng is a palindrome!");
+                        Console.WriteLine($"String is a palindrome!");
                         returnValue = true;
                     }
                     else //continue getting to the middle
                     {
-                        string shorterString = strToCheck.Substring(1, strToCheck.Length - 2);
-                        returnValue = IsPalindromeHelper(shorterString);
+                        string shorterString = i_StrToCheck.Substring(1, i_StrToCheck.Length - 2);
+                        returnValue = isPalindromeHelper(shorterString);
                     }
                 }
                 else //not palindrome
                 {
-                    Console.WriteLine($"Stirng is not a palindrome.");
+                    Console.WriteLine($"String is not a palindrome.");
                     returnValue = false;
                 }
             }
@@ -57,30 +57,30 @@ namespace Ex01_04
         {
             bool returnValue = true;
             long specialStrInt;
-            if(!long.TryParse(m_specialString, out specialStrInt))   // not an int
+            if(!long.TryParse(s_MSpecialString, out specialStrInt))   // not an int
             {
-                Console.WriteLine($"Stirng is not a number.");
+                Console.WriteLine($"String is not a number.");
                 returnValue = false;
             }
             else // an int
             {
-                if (specialStrInt % NUMBER_TO_CHECK_DIVISION != 0) // not divided by three
+                if (specialStrInt % k_NumberToCheckDivision != 0) // not divided by three
                 {
-                    Console.WriteLine($"Stirng is not divided by {NUMBER_TO_CHECK_DIVISION}.");
+                    Console.WriteLine($"String is not divided by {k_NumberToCheckDivision}.");
                     returnValue = false;
                 }
             }
             if(returnValue)
             {
-                Console.WriteLine($"Stirng is divided by {NUMBER_TO_CHECK_DIVISION}.");
+                Console.WriteLine($"String is divided by {k_NumberToCheckDivision}.");
             }
             return returnValue;
         }
 
-        public static bool IsStringBuiltOfABC()
+        public static bool IsStringBuiltOfAbc()
         {
             bool returnValue = true;
-            if(!m_specialString.All(c => (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))) // string is not built out of english letters only
+            if(!s_MSpecialString.All(i_C => (i_C >= 'A' && i_C <= 'Z') || (i_C >= 'a' && i_C <= 'z'))) // string is not built out of english letters only
             {
                 Console.WriteLine("String isn't built out of english letters only.");
                 returnValue = false;
@@ -88,11 +88,11 @@ namespace Ex01_04
             else //string is built out of english letters only
             {
                 // check uppercase
-                int amountUppercaseLetters = m_specialString.Count(char.IsUpper);
+                int amountUppercaseLetters = s_MSpecialString.Count(char.IsUpper);
                 Console.WriteLine($"There are {amountUppercaseLetters} uppercase letters in string.");
 
 
-                string lowerCaseString = m_specialString.ToLower();
+                string lowerCaseString = s_MSpecialString.ToLower();
 
                 for (int i = 0; i < lowerCaseString.Length - 1 && returnValue; i++)
                 {

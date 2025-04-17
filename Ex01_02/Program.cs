@@ -4,8 +4,8 @@
     {
         static void Main()
         {
-            const int TREE_HEIGHT = 7;
-            NumbersTree.PrintNumberTree(TREE_HEIGHT);
+            const int k_TreeHeight = 7;
+            NumbersTree.PrintNumberTree(k_TreeHeight);
         }
     }
 }

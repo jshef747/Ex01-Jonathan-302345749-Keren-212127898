@@ -5,7 +5,7 @@
         static public void Main() 
         {
             SpecialString.GetStrFromUser();
-            SpecialString.IsStringBuiltOfABC();
+            SpecialString.IsStringBuiltOfAbc();
             SpecialString.IsDividedByThree();
             SpecialString.IsPalindrome();
         }

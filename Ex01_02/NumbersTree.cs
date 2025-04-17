@@ -4,68 +4,68 @@ namespace Ex01_02
 {
     public class NumbersTree
     {
-        const int STARTING_LETTER = 'A';
-        const int STARTING_NUMBER = 1;
-        const int LENGTH_OF_BARK = 2;
-        const int MAX_NUMBER_TO_PRINT = 9;
+        const int k_StartingLetter = 'A';
+        const int k_StartingNumber = 1;
+        const int k_LengthOfBark = 2;
+        const int k_MaxNumberToPrint = 9;
 
-        public static void PrintNumberTree(int i_treeHeight)
+        public static void PrintNumberTree(int i_TreeHeight)
         {
-            if(i_treeHeight < 0)
+            if(i_TreeHeight < 0)
             {
                 return;
             }
-            PrintNumberTreeHelper(i_treeHeight ,STARTING_NUMBER, STARTING_NUMBER);
+            printNumberTreeHelper(i_TreeHeight ,k_StartingNumber, k_StartingNumber);
         }
-        private static void PrintNumberTreeHelper(int i_treeHeight, int i_currentLevel, int i_currentNumber)
+        private static void printNumberTreeHelper(int i_TreeHeight, int i_CurrentLevel, int i_CurrentNumber)
         {
             //base case
-            if (i_currentLevel > i_treeHeight)
+            if (i_CurrentLevel > i_TreeHeight)
             {
                 return;
             }
             
             System.Text.StringBuilder textToPrint = new System.Text.StringBuilder();
 
-            char currentLevelLetter = (char)(STARTING_LETTER + i_currentLevel-1);
+            char currentLevelLetter = (char)(k_StartingLetter + i_CurrentLevel-1);
             textToPrint.Append($"{currentLevelLetter}  ");
             
 
             //bark
-            if (i_currentLevel >= i_treeHeight-1)
+            if (i_CurrentLevel >= i_TreeHeight-1)
             {
-                AppendBarkLevel(i_treeHeight, i_currentNumber, ref textToPrint);
+                appendBarkLevel(i_TreeHeight, i_CurrentNumber, ref textToPrint);
             }
             else
             {
-                AppendNumberLevel(i_treeHeight, ref i_currentNumber, i_currentLevel, ref textToPrint);
+                appendNumberLevel(i_TreeHeight, ref i_CurrentNumber, i_CurrentLevel, ref textToPrint);
             }
 
             Console.WriteLine(textToPrint);
 
-            PrintNumberTreeHelper(i_treeHeight, i_currentLevel+1, i_currentNumber);
+            printNumberTreeHelper(i_TreeHeight, i_CurrentLevel+1, i_CurrentNumber);
         }
 
-        private static void AppendBarkLevel(int i_treeHeight, int i_number, ref System.Text.StringBuilder txt) 
+        private static void appendBarkLevel(int i_TreeHeight, int i_Number, ref System.Text.StringBuilder i_Txt) 
         {
-            int numberOfSpacesToPrint = i_treeHeight - LENGTH_OF_BARK - 1;
-            txt.Append(' ', numberOfSpacesToPrint * 2);
-            txt.Append($"|{i_number}|");
+            int numberOfSpacesToPrint = i_TreeHeight - k_LengthOfBark - 1;
+            i_Txt.Append(' ', numberOfSpacesToPrint * 2);
+            i_Txt.Append($"|{i_Number}|");
         }
 
-        private static void AppendNumberLevel(int i_treeHeight, ref int i_number, int i_currentLevel, ref System.Text.StringBuilder txt)
+        private static void appendNumberLevel(int i_TreeHeight, ref int i_Number, int i_CurrentLevel, ref System.Text.StringBuilder i_Txt)
         {
-            int numberOfSpacesToPrint = i_treeHeight - LENGTH_OF_BARK - i_currentLevel;
-            txt.Append(' ', numberOfSpacesToPrint * 2);
+            int numberOfSpacesToPrint = i_TreeHeight - k_LengthOfBark - i_CurrentLevel;
+            i_Txt.Append(' ', numberOfSpacesToPrint * 2);
 
-            int levelTextLength = i_currentLevel * 2 - 1;
+            int levelTextLength = i_CurrentLevel * 2 - 1;
             for (int j = 1; j <= levelTextLength; j++)
             {
-                txt.Append($" {i_number}");
-                i_number++;
-                if (i_number == MAX_NUMBER_TO_PRINT + 1)
+                i_Txt.Append($" {i_Number}");
+                i_Number++;
+                if (i_Number == k_MaxNumberToPrint + 1)
                 {
-                    i_number = STARTING_NUMBER;
+                    i_Number = k_StartingNumber;
                 }
             }
         }
