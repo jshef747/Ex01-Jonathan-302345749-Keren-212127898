@@ -6,7 +6,7 @@
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <ProjectGuid>{1F872375-25CD-4F83-9101-30128BA949D2}</ProjectGuid>
-        <OutputType>Library</OutputType>
+        <OutputType>Exe</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>EX01_05</RootNamespace>
         <AssemblyName>EX01_05</AssemblyName>
@@ -33,7 +33,6 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-      <Compile Include="Number.cs" />
       <Compile Include="Program.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
