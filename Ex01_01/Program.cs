@@ -4,18 +4,18 @@ namespace Ex01_01
 {
     class Program
     {
-        private static string[] BinaryNumberInStringArray;
-        private static int[] BinaryNumbersInDecimalArray = { 0, 0, 0, 0 };
-        private static int[] longestSeriesOfOnesPerNumber = { 0, 0, 0, 0 };
-        private static int[] numberOfOnesPerNumber = { 0, 0, 0, 0 };
-        private static int[] numberOfChangesBetween0And1PerNumber = { 0, 0, 0, 0 };
+        private static string[] s_BinaryNumberInStringArray;
+        private static int[] s_BinaryNumbersInDecimalArray = { 0, 0, 0, 0 };
+        private static int[] s_LongestSeriesOfOnesPerNumber = { 0, 0, 0, 0 };
+        private static int[] s_NumberOfOnesPerNumber = { 0, 0, 0, 0 };
+        private static int[] s_NumberOfChangesBetween0And1PerNumber = { 0, 0, 0, 0 };
 
         private static int getTotalNumberOfOnes()
         {
             int totalNumberOfOnes = 0;
             for (int i = 0; i < 4; i++)
             {
-                totalNumberOfOnes += numberOfOnesPerNumber[i];
+                totalNumberOfOnes += s_NumberOfOnesPerNumber[i];
             }
             return totalNumberOfOnes;
         }
@@ -26,9 +26,9 @@ namespace Ex01_01
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    if (BinaryNumberInStringArray[i][j] == '1')
+                    if (s_BinaryNumberInStringArray[i][j] == '1')
                     {
-                        numberOfOnesPerNumber[i]++;
+                        s_NumberOfOnesPerNumber[i]++;
                     }
                 }
             }
@@ -40,9 +40,9 @@ namespace Ex01_01
             {
                 for (int j = 1; j < 7; j++)
                 {
-                    if (BinaryNumberInStringArray[i][j - 1] != BinaryNumberInStringArray[i][j])
+                    if (s_BinaryNumberInStringArray[i][j - 1] != s_BinaryNumberInStringArray[i][j])
                     {
-                        numberOfChangesBetween0And1PerNumber[i]++;
+                        s_NumberOfChangesBetween0And1PerNumber[i]++;
                     }
                 }
             }
@@ -56,7 +56,7 @@ namespace Ex01_01
                 int currentSeriesOfOnes = 0;
                 for (int j = 0; j < 7; j++)
                 {
-                    if (BinaryNumberInStringArray[i][j] == '1')
+                    if (s_BinaryNumberInStringArray[i][j] == '1')
                     {
                         currentSeriesOfOnes++;
                     }
@@ -67,7 +67,7 @@ namespace Ex01_01
                     }
                 }
                 longestSeriesOfOnes = Math.Max(longestSeriesOfOnes, currentSeriesOfOnes);
-                longestSeriesOfOnesPerNumber[i] = longestSeriesOfOnes;
+                s_LongestSeriesOfOnesPerNumber[i] = longestSeriesOfOnes;
             }
         }
 
@@ -77,21 +77,21 @@ namespace Ex01_01
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    if (BinaryNumberInStringArray[i][j] == '1')
+                    if (s_BinaryNumberInStringArray[i][j] == '1')
                     {
-                        BinaryNumbersInDecimalArray[i] += (int)Math.Pow(2, 7 - 1 - j);
+                        s_BinaryNumbersInDecimalArray[i] += (int)Math.Pow(2, 7 - 1 - j);
                     }
                 }
             }
-            Array.Sort(BinaryNumbersInDecimalArray);
-            Array.Reverse(BinaryNumbersInDecimalArray);
+            Array.Sort(s_BinaryNumbersInDecimalArray);
+            Array.Reverse(s_BinaryNumbersInDecimalArray);
         }
 
         private static void printDecimalsInDescendingOrder()
         {
             for (int i = 0; i < 4; i++)
             {
-                Console.Write(string.Format("{0} ", BinaryNumbersInDecimalArray[i]));
+                Console.Write(string.Format("{0} ", s_BinaryNumbersInDecimalArray[i]));
             }
             Console.WriteLine();
         }
@@ -101,7 +101,7 @@ namespace Ex01_01
             int sum = 0;
             for (int i = 0; i < 4; i++)
             {
-                sum += BinaryNumbersInDecimalArray[i];
+                sum += s_BinaryNumbersInDecimalArray[i];
             }
             return (float)sum / 4;
         }
@@ -122,7 +122,7 @@ namespace Ex01_01
 
         private static void getUserInputAndCheckIt()
         {
-            BinaryNumberInStringArray = new string[4];
+            s_BinaryNumberInStringArray = new string[4];
             for (int i = 0; i < 4; i++)
             {
                 Console.WriteLine("Please Enter 7 digit binary number:");
@@ -132,11 +132,11 @@ namespace Ex01_01
                     Console.WriteLine("invalid binary number, please try again:");
                     binaryNumberInStringToCheck = Console.ReadLine();
                 }
-                BinaryNumberInStringArray[i] = binaryNumberInStringToCheck;
+                s_BinaryNumberInStringArray[i] = binaryNumberInStringToCheck;
             }
         }
 
-        private static void PrintBinarySetDetails()
+        private static void printBinarySetDetails()
         {
             convertBinaryToDecimal();
             printDecimalsInDescendingOrder();
@@ -151,11 +151,11 @@ namespace Ex01_01
 
             for (int i = 1; i < 4; i++)
             {
-                if (longestSeriesOfOnesPerNumber[i] > longestSeriesOfOnesPerNumber[indexWithLongestSeries])
+                if (s_LongestSeriesOfOnesPerNumber[i] > s_LongestSeriesOfOnesPerNumber[indexWithLongestSeries])
                 {
                     indexWithLongestSeries = i;
                 }
-                if (numberOfOnesPerNumber[i] > numberOfOnesPerNumber[indexWithMostOnes])
+                if (s_NumberOfOnesPerNumber[i] > s_NumberOfOnesPerNumber[indexWithMostOnes])
                 {
                     indexWithMostOnes = i;
                 }
@@ -166,22 +166,22 @@ namespace Ex01_01
                     @"the average in decimal is: {0}
 the longest series of ones is: {1} from the binary number: {2}",
                     average,
-                    longestSeriesOfOnesPerNumber[indexWithLongestSeries],
-                    BinaryNumberInStringArray[indexWithLongestSeries]));
+                    s_LongestSeriesOfOnesPerNumber[indexWithLongestSeries],
+                    s_BinaryNumberInStringArray[indexWithLongestSeries]));
 
             Console.WriteLine("The number of changes between 0 and 1 for each binary number is:");
             for (int i = 0; i < 4; i++)
             {
                 Console.WriteLine("number of changes: {0} for binary number: {1}",
-                    numberOfChangesBetween0And1PerNumber[i],
-                    BinaryNumberInStringArray[i]);
+                    s_NumberOfChangesBetween0And1PerNumber[i],
+                    s_BinaryNumberInStringArray[i]);
             }
 
             Console.WriteLine(
                 string.Format(
                     @"the largest number of ones is: {0} from the binary number: {1}",
-                    numberOfOnesPerNumber[indexWithMostOnes],
-                    BinaryNumberInStringArray[indexWithMostOnes]));
+                    s_NumberOfOnesPerNumber[indexWithMostOnes],
+                    s_BinaryNumberInStringArray[indexWithMostOnes]));
 
             Console.WriteLine("the total number of ones in the set is: {0}", getTotalNumberOfOnes());
         }
@@ -189,7 +189,7 @@ the longest series of ones is: {1} from the binary number: {2}",
         public static void Main()
         {
             getUserInputAndCheckIt();
-            PrintBinarySetDetails();
+            printBinarySetDetails();
         }
     }
 }
