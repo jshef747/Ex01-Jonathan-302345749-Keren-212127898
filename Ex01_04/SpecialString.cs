@@ -7,12 +7,13 @@ namespace Ex01_04
     {
         private static string m_specialString;
         const int STRING_LENGTH = 12;
-        const int NUMBER_TO_CHECK_DIVISION = 3; 
+        const int NUMBER_TO_CHECK_DIVISION = 3;
+
         public static void GetStrFromUser()
         {
-            Console.WriteLine($"Enter a string with exactly {STRING_LENGTH} characters:");
+            Console.WriteLine(string.Format("Enter a string with exactly {0} characters:", STRING_LENGTH));
             string strToCheck = Console.ReadLine();
-            while (strToCheck.Length != STRING_LENGTH) 
+            while (strToCheck.Length != STRING_LENGTH)
             {
                 Console.WriteLine("Input must be exactly 12 characters long. Try again:");
                 strToCheck = Console.ReadLine();
@@ -35,7 +36,7 @@ namespace Ex01_04
                 {
                     if (lastCharIndex == 1) // got to middle of string
                     {
-                        Console.WriteLine($"Stirng is a palindrome!");
+                        Console.WriteLine("String is a palindrome!");
                         returnValue = true;
                     }
                     else //continue getting to the middle
@@ -46,33 +47,33 @@ namespace Ex01_04
                 }
                 else //not palindrome
                 {
-                    Console.WriteLine($"Stirng is not a palindrome.");
+                    Console.WriteLine("String is not a palindrome.");
                     returnValue = false;
                 }
             }
             return returnValue;
         }
 
-        public static bool IsDividedByThree() 
+        public static bool IsDividedBy()
         {
             bool returnValue = true;
             long specialStrInt;
-            if(!long.TryParse(m_specialString, out specialStrInt))   // not an int
+            if (!long.TryParse(m_specialString, out specialStrInt))   // not a number
             {
-                Console.WriteLine($"Stirng is not a number.");
+                Console.WriteLine("String is not a number.");
                 returnValue = false;
             }
-            else // an int
+            else // a number
             {
-                if (specialStrInt % NUMBER_TO_CHECK_DIVISION != 0) // not divided by three
+                if (specialStrInt % NUMBER_TO_CHECK_DIVISION != 0) // not divided by
                 {
-                    Console.WriteLine($"Stirng is not divided by {NUMBER_TO_CHECK_DIVISION}.");
+                    Console.WriteLine(string.Format("String is not divided by {0}.", NUMBER_TO_CHECK_DIVISION));
                     returnValue = false;
                 }
             }
-            if(returnValue)
+            if (returnValue)
             {
-                Console.WriteLine($"Stirng is divided by {NUMBER_TO_CHECK_DIVISION}.");
+                Console.WriteLine(string.Format("String is divided by {0}.", NUMBER_TO_CHECK_DIVISION));
             }
             return returnValue;
         }
@@ -80,7 +81,7 @@ namespace Ex01_04
         public static bool IsStringBuiltOfABC()
         {
             bool returnValue = true;
-            if(!m_specialString.All(c => (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))) // string is not built out of english letters only
+            if (!m_specialString.All(c => (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))) // string is not built out of english letters only
             {
                 Console.WriteLine("String isn't built out of english letters only.");
                 returnValue = false;
@@ -89,8 +90,7 @@ namespace Ex01_04
             {
                 // check uppercase
                 int amountUppercaseLetters = m_specialString.Count(char.IsUpper);
-                Console.WriteLine($"There are {amountUppercaseLetters} uppercase letters in string.");
-
+                Console.WriteLine(string.Format("There are {0} uppercase letters in string.", amountUppercaseLetters));
 
                 string lowerCaseString = m_specialString.ToLower();
 
@@ -106,7 +106,6 @@ namespace Ex01_04
                 {
                     Console.WriteLine("String is built in alphabetical order!");
                 }
-
             }
 
             return returnValue;
