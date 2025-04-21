@@ -11,7 +11,7 @@ namespace EX01_05
         static void Main()
         {
             getUserInput();
-            PrintNumberDetails();
+            printNumberDetails();
         }
 
         private static void getUserInput()
@@ -106,33 +106,62 @@ namespace EX01_05
             return getLargestDigit() - getSmallestDigit();
         }
 
+        private static int realLenOfNumberInInt()
+        {
+            int len = 0;
+            int tempNumber = Math.Abs(s_Number);
+            while (tempNumber > 0)
+            {
+                len++;
+                tempNumber /= 10;
+            }
+            return len;
+        }
         private static int getTheDigitThatAppearsTheMostAndItsNumberOfAppearances(out int i_NumberOfAppearances)
         {
-            char maxChar = s_NumberStr[0];
-            int maxAppearances = 0;
-            for (int i = 0; i < k_NumberLength; i++)
+            int realLen = realLenOfNumberInInt();
+            int zeroPadding = k_NumberLength - realLen;
+            
+            int maxDigitThatAppears = 0;
+            int maxDigitAppearances = zeroPadding;
+
+            int tempNumber = Math.Abs(s_Number);
+
+            for (int digit = 0; digit <= 9; digit++)
             {
-                int appearances = 0;
-                char currentChar = s_NumberStr[i];
-                for (int j = 0; j < k_NumberLength; j++)
+                int currentDigitAppearances;
+                if (digit == 0)
                 {
-                    if (currentChar == s_NumberStr[j])
-                    {
-                        appearances++;
-                    }
+                    currentDigitAppearances = zeroPadding;
+                }
+                else
+                {
+                    currentDigitAppearances = 0;
                 }
 
-                if (appearances > maxAppearances)
+                int dividedNumber = tempNumber;
+                while (dividedNumber > 0)
                 {
-                    maxAppearances = appearances;
-                    maxChar = currentChar;
+                    int lastDigit = dividedNumber % 10;
+                    if(lastDigit == digit)
+                    {
+                        currentDigitAppearances++;
+                    }
+                    dividedNumber /= 10;
+                }
+
+                if (currentDigitAppearances > maxDigitAppearances)
+                {
+                    maxDigitAppearances  = currentDigitAppearances;
+                    maxDigitThatAppears  = digit;
                 }
             }
-            i_NumberOfAppearances = maxAppearances;
-            return maxChar - '0';
+
+            i_NumberOfAppearances = maxDigitAppearances;
+            return maxDigitThatAppears;
         }
 
-        private static void PrintNumberDetails()
+        private static void printNumberDetails()
         {
             int digitWithMostNumberOfAppearances;
             int mostFrequentDigit = getTheDigitThatAppearsTheMostAndItsNumberOfAppearances(out digitWithMostNumberOfAppearances);
