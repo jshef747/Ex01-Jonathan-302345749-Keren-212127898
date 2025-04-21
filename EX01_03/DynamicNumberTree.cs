@@ -4,16 +4,17 @@ namespace EX01_03
 {
     class DynamicNumberTree
     {
-        const int k_MinimumHeight = 4;
-        const int k_MaximumHeight = 15;
+        const int k_MinimumHeightForTree = 4;
+        const int k_MaximumHeightForTree = 15;
+      
         public static int GetHeightFromUser()
         {
-            Console.WriteLine("Enter a number between {MINIMUM_HEIGHT} and {MAXIMUM_HEIGHT}:");
+            Console.WriteLine(string.Format("Enter a number between {0} and {1}:", k_MinimumHeightForTree, k_MaximumHeightForTree));
 
             int userInputInt;
-            while (!int.TryParse(Console.ReadLine(), out userInputInt) || userInputInt < k_MinimumHeight || userInputInt > k_MaximumHeight)
+            while (!int.TryParse(Console.ReadLine(), out userInputInt) || userInputInt < k_MinimumHeightForTree || userInputInt > k_MaximumHeightForTree)
             {
-                Console.WriteLine($"Invalid input! Please enter a number between {k_MinimumHeight} and {k_MaximumHeight}:");
+                Console.WriteLine(string.Format("Invalid input! Please enter a number between {0} and {1}:", k_MinimumHeightForTree, k_MaximumHeightForTree));
             }
             return userInputInt;
         }
