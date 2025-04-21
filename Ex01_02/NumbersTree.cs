@@ -6,6 +6,7 @@ namespace Ex01_02
     {
         const int k_StartingLetterForTree = 'A';
         const int k_StartingNumberForTree = 1;
+      
         const int k_LengthOfBark = 2;
         const int k_MaxNumberToPrint = 9;
 
@@ -56,8 +57,8 @@ namespace Ex01_02
         {
             int numberOfSpacesToPrint = i_TreeHeight - k_LengthOfBark - i_CurrentLevel;
             io_Text.Append(' ', numberOfSpacesToPrint * 2);
-
             int levelTextLength = i_CurrentLevel * 2 - 1;
+          
             for (int j = 1; j <= levelTextLength; j++)
             {
                 io_Text.Append(string.Format(" {0}", i_CurrentNumber));

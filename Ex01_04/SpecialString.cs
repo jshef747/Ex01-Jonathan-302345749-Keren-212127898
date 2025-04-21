@@ -78,10 +78,10 @@ namespace Ex01_04
             return returnValue;
         }
 
-        public static bool IsStringBuiltOfABC()
+        public static bool IsStringBuiltOfAbc()
         {
             bool returnValue = true;
-            if (!m_SpecialString.All(c => (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))) // string is not built out of english letters only
+            if (!m_SpecialString.All(c => (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))) // string is not built out of 
             {
                 Console.WriteLine("String isn't built out of english letters only.");
                 returnValue = false;

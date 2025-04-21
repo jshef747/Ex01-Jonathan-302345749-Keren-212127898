@@ -6,7 +6,7 @@ namespace EX01_03
     {
         const int k_MinimumHeightForTree = 4;
         const int k_MaximumHeightForTree = 15;
-
+      
         public static int GetHeightFromUser()
         {
             Console.WriteLine(string.Format("Enter a number between {0} and {1}:", k_MinimumHeightForTree, k_MaximumHeightForTree));
