@@ -5,34 +5,34 @@ namespace Ex01_04
 {
     class SpecialString
     {
-        private static string m_specialString;
-        const int STRING_LENGTH = 12;
-        const int NUMBER_TO_CHECK_DIVISION = 3;
+        private static string m_SpecialString;
+        const int k_StringLength = 12;
+        const int k_NumberToCheckDivision = 3;
 
         public static void GetStrFromUser()
         {
-            Console.WriteLine(string.Format("Enter a string with exactly {0} characters:", STRING_LENGTH));
-            string strToCheck = Console.ReadLine();
-            while (strToCheck.Length != STRING_LENGTH)
+            Console.WriteLine(string.Format("Enter a string with exactly {0} characters:", k_StringLength));
+            string i_StrToCheck = Console.ReadLine();
+            while (i_StrToCheck.Length != k_StringLength)
             {
                 Console.WriteLine("Input must be exactly 12 characters long. Try again:");
-                strToCheck = Console.ReadLine();
+                i_StrToCheck = Console.ReadLine();
             }
-            m_specialString = strToCheck;
+            m_SpecialString = i_StrToCheck;
         }
 
         public static bool IsPalindrome()
         {
-            return IsPalindromeHelper(m_specialString.ToLower());
+            return isPalindromeHelper(m_SpecialString.ToLower());
         }
 
-        private static bool IsPalindromeHelper(string strToCheck)
+        private static bool isPalindromeHelper(string i_StrToCheck)
         {
             bool returnValue = true;
-            if (strToCheck.Length != 0) // base case is when we get to zero lengthed string
+            if (i_StrToCheck.Length != 0) // base case is when we get to zero lengthed string
             {
-                int lastCharIndex = strToCheck.Length - 1;
-                if (strToCheck[0] == strToCheck[lastCharIndex])
+                int lastCharIndex = i_StrToCheck.Length - 1;
+                if (i_StrToCheck[0] == i_StrToCheck[lastCharIndex])
                 {
                     if (lastCharIndex == 1) // got to middle of string
                     {
@@ -41,8 +41,8 @@ namespace Ex01_04
                     }
                     else //continue getting to the middle
                     {
-                        string shorterString = strToCheck.Substring(1, strToCheck.Length - 2);
-                        returnValue = IsPalindromeHelper(shorterString);
+                        string shorterString = i_StrToCheck.Substring(1, i_StrToCheck.Length - 2);
+                        returnValue = isPalindromeHelper(shorterString);
                     }
                 }
                 else //not palindrome
@@ -58,22 +58,22 @@ namespace Ex01_04
         {
             bool returnValue = true;
             long specialStrInt;
-            if (!long.TryParse(m_specialString, out specialStrInt))   // not a number
+            if (!long.TryParse(m_SpecialString, out specialStrInt))   // not a number
             {
                 Console.WriteLine("String is not a number.");
                 returnValue = false;
             }
             else // a number
             {
-                if (specialStrInt % NUMBER_TO_CHECK_DIVISION != 0) // not divided by
+                if (specialStrInt % k_NumberToCheckDivision != 0) // not divided by
                 {
-                    Console.WriteLine(string.Format("String is not divided by {0}.", NUMBER_TO_CHECK_DIVISION));
+                    Console.WriteLine(string.Format("String is not divided by {0}.", k_NumberToCheckDivision));
                     returnValue = false;
                 }
             }
             if (returnValue)
             {
-                Console.WriteLine(string.Format("String is divided by {0}.", NUMBER_TO_CHECK_DIVISION));
+                Console.WriteLine(string.Format("String is divided by {0}.", k_NumberToCheckDivision));
             }
             return returnValue;
         }
@@ -81,7 +81,7 @@ namespace Ex01_04
         public static bool IsStringBuiltOfABC()
         {
             bool returnValue = true;
-            if (!m_specialString.All(c => (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))) // string is not built out of english letters only
+            if (!m_SpecialString.All(c => (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))) // string is not built out of english letters only
             {
                 Console.WriteLine("String isn't built out of english letters only.");
                 returnValue = false;
@@ -89,10 +89,10 @@ namespace Ex01_04
             else //string is built out of english letters only
             {
                 // check uppercase
-                int amountUppercaseLetters = m_specialString.Count(char.IsUpper);
+                int amountUppercaseLetters = m_SpecialString.Count(char.IsUpper);
                 Console.WriteLine(string.Format("There are {0} uppercase letters in string.", amountUppercaseLetters));
 
-                string lowerCaseString = m_specialString.ToLower();
+                string lowerCaseString = m_SpecialString.ToLower();
 
                 for (int i = 0; i < lowerCaseString.Length - 1 && returnValue; i++)
                 {
