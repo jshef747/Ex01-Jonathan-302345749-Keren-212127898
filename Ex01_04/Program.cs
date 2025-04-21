@@ -7,7 +7,7 @@
             SpecialString.GetStrFromUser();
             SpecialString.IsPalindrome();
             SpecialString.IsDividedBy();
-            SpecialString.IsStringBuiltOfABC();
+            SpecialString.IsStringBuiltOfAbc();
         }
     }
 }
