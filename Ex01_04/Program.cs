@@ -5,10 +5,6 @@ namespace Ex01_04
 {
     class Program
     {
-        private static string s_MSpecialString;
-        const int k_StringLength = 12;
-        const int k_NumberToCheckDivision = 3;
-
         public static void Main()
         {
             GetStrFromUser();
@@ -17,15 +13,21 @@ namespace Ex01_04
             IsStringBuiltOfAbc();
         }
 
+        private static string s_MSpecialString;
+        const int k_StringLength = 12;
+        const int k_NumberToCheckDivision = 3;
+
         public static void GetStrFromUser()
         {
             Console.WriteLine(string.Format("Enter a string with exactly {0} characters:", k_StringLength));
             string iStrToCheck = Console.ReadLine();
+
             while (iStrToCheck.Length != k_StringLength)
             {
                 Console.WriteLine("Input must be exactly 12 characters long. Try again:");
                 iStrToCheck = Console.ReadLine();
             }
+
             s_MSpecialString = iStrToCheck;
         }
 
@@ -37,9 +39,11 @@ namespace Ex01_04
         private static bool isPalindromeHelper(string i_StrToCheck)
         {
             bool returnValue = true;
+
             if (i_StrToCheck.Length != 0) // base case is when we get to zero lengthed string
             {
                 int lastCharIndex = i_StrToCheck.Length - 1;
+
                 if (i_StrToCheck[0] == i_StrToCheck[lastCharIndex])
                 {
                     if (lastCharIndex == 1) // got to middle of string
@@ -59,6 +63,7 @@ namespace Ex01_04
                     returnValue = false;
                 }
             }
+
             return returnValue;
         }
 
@@ -66,6 +71,7 @@ namespace Ex01_04
         {
             bool returnValue = true;
             long specialStrInt;
+
             if (!long.TryParse(s_MSpecialString, out specialStrInt))   // not a number
             {
                 Console.WriteLine("String is not a number.");
@@ -83,12 +89,14 @@ namespace Ex01_04
             {
                 Console.WriteLine(string.Format("String is divided by {0}.", k_NumberToCheckDivision));
             }
+
             return returnValue;
         }
 
         public static bool IsStringBuiltOfAbc()
         {
             bool returnValue = true;
+
             if (!s_MSpecialString.All(i_C => (i_C >= 'A' && i_C <= 'Z') || (i_C >= 'a' && i_C <= 'z'))) // string is not built out of 
             {
                 Console.WriteLine("String isn't built out of english letters only.");
@@ -110,6 +118,7 @@ namespace Ex01_04
                         returnValue = false;
                     }
                 }
+
                 if (returnValue)
                 {
                     Console.WriteLine("String is built in alphabetical order!");
