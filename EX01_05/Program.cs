@@ -29,10 +29,12 @@ namespace EX01_05
         private static bool checkIfInputIsValid(string i_NumberStr)
         {
             bool isValid = int.TryParse(i_NumberStr, out s_Number);
+            
             if (i_NumberStr.Length != k_NumberLength)
             {
                 isValid = false;
             }
+            
             return isValid;
         }
 
@@ -40,15 +42,19 @@ namespace EX01_05
         {
             int largestDigit = 0;
             int tempNumber = Math.Abs(s_Number);
+            
             for (int digitToCheck = 0; digitToCheck < k_NumberLength; digitToCheck++)
             {
                 int currentDigit = tempNumber % 10;
+                
                 if (currentDigit > largestDigit)
                 {
                     largestDigit = currentDigit;
                 }
+                
                 tempNumber /= 10;
             }
+            
             return largestDigit;
         }
 
@@ -56,15 +62,19 @@ namespace EX01_05
         {
             int smallestDigit = 10;
             int tempNumber = Math.Abs(s_Number);
+            
             for (int digitToCheck = 0; digitToCheck < k_NumberLength; digitToCheck++)
             {
                 int currentDigit = tempNumber % 10;
+                
                 if (currentDigit < smallestDigit)
                 {
                     smallestDigit = currentDigit;
                 }
+                
                 tempNumber /= 10;
             }
+            
             return smallestDigit;
         }
 
@@ -73,13 +83,16 @@ namespace EX01_05
             int smallerThenFirstDigit = 0;
             int firstDigit = Math.Abs(s_Number / (int)Math.Pow(10, k_NumberLength - 1));
             int tempNumber = Math.Abs(s_Number);
+            
             for (int digitToCheck = 1; digitToCheck < k_NumberLength; digitToCheck++)
             {
                 int currentDigit = tempNumber % 10;
+                
                 if (currentDigit < firstDigit)
                 {
                     smallerThenFirstDigit++;
                 }
+                
                 tempNumber /= 10;
             }
             return smallerThenFirstDigit;
@@ -89,15 +102,19 @@ namespace EX01_05
         {
             int dividedBy3WithoutRemainder = 0;
             int tempNumber = Math.Abs(s_Number);
+            
             for (int digitToCheck = 0; digitToCheck < k_NumberLength; digitToCheck++)
             {
                 int currentDigit = tempNumber % 10;
+                
                 if (currentDigit % 3 == 0)
                 {
                     dividedBy3WithoutRemainder++;
                 }
+                
                 tempNumber /= 10;
             }
+            
             return dividedBy3WithoutRemainder;
         }
 
@@ -110,11 +127,13 @@ namespace EX01_05
         {
             int len = 0;
             int tempNumber = Math.Abs(s_Number);
+            
             while (tempNumber > 0)
             {
                 len++;
                 tempNumber /= 10;
             }
+            
             return len;
         }
         private static int getTheDigitThatAppearsTheMostAndItsNumberOfAppearances(out int i_NumberOfAppearances)
@@ -130,6 +149,7 @@ namespace EX01_05
             for (int digit = 0; digit <= 9; digit++)
             {
                 int currentDigitAppearances;
+                
                 if (digit == 0)
                 {
                     currentDigitAppearances = zeroPadding;
@@ -140,6 +160,7 @@ namespace EX01_05
                 }
 
                 int dividedNumber = tempNumber;
+                
                 while (dividedNumber > 0)
                 {
                     int lastDigit = dividedNumber % 10;
@@ -147,6 +168,7 @@ namespace EX01_05
                     {
                         currentDigitAppearances++;
                     }
+                    
                     dividedNumber /= 10;
                 }
 
@@ -158,6 +180,7 @@ namespace EX01_05
             }
 
             i_NumberOfAppearances = maxDigitAppearances;
+            
             return maxDigitThatAppears;
         }
         

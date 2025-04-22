@@ -13,10 +13,12 @@ namespace Ex01_01
         private static int getTotalNumberOfOnes()
         {
             int totalNumberOfOnes = 0;
+            
             for (int i = 0; i < 4; i++)
             {
                 totalNumberOfOnes += s_NumberOfOnesPerNumber[i];
             }
+            
             return totalNumberOfOnes;
         }
 
@@ -54,6 +56,7 @@ namespace Ex01_01
             {
                 int longestSeriesOfOnes = 0;
                 int currentSeriesOfOnes = 0;
+                
                 for (int j = 0; j < 7; j++)
                 {
                     if (s_BinaryNumberInStringArray[i][j] == '1')
@@ -66,6 +69,7 @@ namespace Ex01_01
                         currentSeriesOfOnes = 0;
                     }
                 }
+                
                 longestSeriesOfOnes = Math.Max(longestSeriesOfOnes, currentSeriesOfOnes);
                 s_LongestSeriesOfOnesPerNumber[i] = longestSeriesOfOnes;
             }
@@ -83,6 +87,7 @@ namespace Ex01_01
                     }
                 }
             }
+            
             Array.Sort(s_BinaryNumbersInDecimalArray);
             Array.Reverse(s_BinaryNumbersInDecimalArray);
         }
@@ -93,6 +98,7 @@ namespace Ex01_01
             {
                 Console.Write(string.Format("{0} ", s_BinaryNumbersInDecimalArray[i]));
             }
+            
             Console.WriteLine();
         }
 
@@ -103,6 +109,7 @@ namespace Ex01_01
             {
                 sum += s_BinaryNumbersInDecimalArray[i];
             }
+            
             return (float)sum / 4;
         }
 
@@ -117,6 +124,7 @@ namespace Ex01_01
                     returnValue = false;
                 }
             }
+            
             return returnValue;
         }
 
@@ -127,11 +135,13 @@ namespace Ex01_01
             {
                 Console.WriteLine("Please Enter 7 digit binary number:");
                 string binaryNumberInStringToCheck = Console.ReadLine();
+                
                 while (!checkStrBinaryNumInput(binaryNumberInStringToCheck))
                 {
                     Console.WriteLine("invalid binary number, please try again:");
                     binaryNumberInStringToCheck = Console.ReadLine();
                 }
+                
                 s_BinaryNumberInStringArray[i] = binaryNumberInStringToCheck;
             }
         }
@@ -140,7 +150,6 @@ namespace Ex01_01
         {
             convertBinaryToDecimal();
             printDecimalsInDescendingOrder();
-
             getNumberOfOnesPerNumber();
             getLongestSeriesOfOnesPerNumber();
             getNumberOfChangesBetween0And1PerNumber();
@@ -170,6 +179,7 @@ the longest series of ones is: {1} from the binary number: {2}",
                     s_BinaryNumberInStringArray[indexWithLongestSeries]));
 
             Console.WriteLine("The number of changes between 0 and 1 for each binary number is:");
+            
             for (int i = 0; i < 4; i++)
             {
                 Console.WriteLine("number of changes: {0} for binary number: {1}",
