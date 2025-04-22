@@ -4,8 +4,8 @@ namespace EX01_05
 {
     class Program
     {
-        private const int k_NumberLength = 8;
-        private static int s_Number;
+        private const  int    k_NumberLength = 8;
+        private static int    s_Number;
         private static string s_NumberStr;
 
         static void Main()
@@ -160,7 +160,7 @@ namespace EX01_05
             i_NumberOfAppearances = maxDigitAppearances;
             return maxDigitThatAppears;
         }
-
+        
         private static void printNumberDetails()
         {
             int digitWithMostNumberOfAppearances;
