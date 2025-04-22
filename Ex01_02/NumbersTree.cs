@@ -46,22 +46,22 @@ namespace Ex01_02
             printNumberTreeHelper(i_TreeHeight, i_CurrentLevel + 1, i_CurrentNumber);
         }
 
-        private static void appendBarkLevel(int i_TreeHeight, int i_CurrentNumber, ref System.Text.StringBuilder io_Text)
+        private static void appendBarkLevel(int i_TreeHeight, int i_CurrentNumber, ref System.Text.StringBuilder i_IoText)
         {
             int numberOfSpacesToPrint = i_TreeHeight - k_LengthOfBark - 1;
-            io_Text.Append(' ', numberOfSpacesToPrint * 2);
-            io_Text.Append(string.Format("|{0}|", i_CurrentNumber));
+            i_IoText.Append(' ', numberOfSpacesToPrint * 2);
+            i_IoText.Append(string.Format("|{0}|", i_CurrentNumber));
         }
 
-        private static void appendNumberLevel(int i_TreeHeight, ref int i_CurrentNumber, int i_CurrentLevel, ref System.Text.StringBuilder io_Text)
+        private static void appendNumberLevel(int i_TreeHeight, ref int i_CurrentNumber, int i_CurrentLevel, ref System.Text.StringBuilder i_IoText)
         {
             int numberOfSpacesToPrint = i_TreeHeight - k_LengthOfBark - i_CurrentLevel;
-            io_Text.Append(' ', numberOfSpacesToPrint * 2);
+            i_IoText.Append(' ', numberOfSpacesToPrint * 2);
             int levelTextLength = i_CurrentLevel * 2 - 1;
           
             for (int j = 1; j <= levelTextLength; j++)
             {
-                io_Text.Append(string.Format(" {0}", i_CurrentNumber));
+                i_IoText.Append(string.Format(" {0}", i_CurrentNumber));
                 i_CurrentNumber++;
                 if (i_CurrentNumber == k_MaxNumberToPrint + 1)
                 {
