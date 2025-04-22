@@ -12,7 +12,6 @@ namespace Ex01_02
 
         const int k_StartingLetterForTree = 'A';
         const int k_StartingNumberForTree = 1;
-
         const int k_LengthOfBark = 2;
         const int k_MaxNumberToPrint = 9;
 
@@ -22,8 +21,10 @@ namespace Ex01_02
             {
                 return;
             }
+
             printNumberTreeHelper(i_TreeHeight, k_StartingNumberForTree, k_StartingNumberForTree);
         }
+
         private static void printNumberTreeHelper(int i_TreeHeight, int i_CurrentLevel, int i_CurrentNumber)
         {
             //base case
@@ -69,6 +70,7 @@ namespace Ex01_02
             {
                 io_Text.Append(string.Format(" {0}", i_CurrentNumber));
                 i_CurrentNumber++;
+
                 if (i_CurrentNumber == k_MaxNumberToPrint + 1)
                 {
                     i_CurrentNumber = k_StartingNumberForTree;
